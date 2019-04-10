@@ -88,3 +88,35 @@ var addTwoNumbers = function(l1, l2) {
 };
 ```
 
+### 3、无重复字符的最长子串
+```
+输入: "abcabcbb"
+输出: 3 
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3
+
+输入: "pwwkew"
+输出: 3
+解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+     请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
+```
+
+160ms
+```
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+    let array = []
+    let maxlength = 0
+    for(let i=0, len = s.length; i<len; i++){
+        let index = array.indexOf(s[i])
+        if (index >= 0) {
+            array = array.splice(array.indexOf(s[i]) + 1)
+        }
+        array.push(s[i])
+        maxlength = Math.max(maxlength, array.length)
+    }
+    return maxlength
+};
+```
